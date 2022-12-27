@@ -41,23 +41,26 @@ RSpec.describe 'astronaut index page', type: :feature do
     expect(page).to have_content("Average Astronaut Age: 45")
   end
 
-  xit 'displays each astronauts space missions in alphabetical order' do 
+  it 'displays each astronauts space missions in alphabetical order' do 
     visit '/astronauts'
+    # save_and_open_page
 
     within("section#astronaut-#{@astronaut_1.id}") do
-      expect(page).to have_content("#{@mission_1.name}")
-      expect(page).to have_content("#{@mission_2.name}")
+      expect(page).to have_content("#{@mission_1.title}")
+      expect(page).to have_content("#{@mission_2.title}")
+      # expect(page).not_to have_content("#{@mission_3.title}")
     end
 
     within("section#astronaut-#{@astronaut_2.id}") do
-      expect(page).to have_content("#{@mission_1.name}")
-      expect(page).to have_content("#{@mission_3.name}")
+      expect(page).to have_content("#{@mission_1.title}")
+      expect(page).to have_content("#{@mission_3.title}")
+      # expect(page).not_to have_content("#{@mission_2.title}")
     end
 
     within("section#astronaut-#{@astronaut_3.id}") do
-      expect(page).to have_content("#{@mission_1.name}")
-      expect(page).to have_content("#{@mission_2.name}")
-      expect(page).to have_content("#{@mission_3.name}")
+      expect(page).to have_content("#{@mission_1.title}")
+      expect(page).to have_content("#{@mission_2.title}")
+      expect(page).to have_content("#{@mission_3.title}")
     end
   end
 end
