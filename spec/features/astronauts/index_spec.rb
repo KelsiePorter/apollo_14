@@ -43,7 +43,6 @@ RSpec.describe 'astronaut index page', type: :feature do
 
   it 'displays each astronauts space missions in alphabetical order' do 
     visit '/astronauts'
-    # save_and_open_page
 
     within("section#astronaut-#{@astronaut_1.id}") do
       expect(page).to have_content("#{@mission_1.title}")
@@ -51,7 +50,7 @@ RSpec.describe 'astronaut index page', type: :feature do
       expect(page).not_to have_content("#{@mission_3.title}")
     end
 
-    within("section#astronaut-2") do
+    within("section#astronaut-#{@astronaut_2.id}") do
       expect(page).to have_content("#{@mission_1.title}")
       expect(page).to have_content("#{@mission_3.title}")
       expect(page).not_to have_content("#{@mission_2.title}")
@@ -67,6 +66,16 @@ RSpec.describe 'astronaut index page', type: :feature do
   it 'displays the total time in space for each astronaut' do 
     visit '/astronauts'
 
+    within("section#astronaut-#{@astronaut_1.id}") do
+      expect(page).to have_content("Total Time in Space: 37 days")
+    end
 
+    within("section#astronaut-#{@astronaut_2.id}") do
+      expect(page).to have_content("Total Time in Space: 20 days")
+    end
+
+    within("section#astronaut-#{@astronaut_3.id}") do
+      expect(page).to have_content("Total Time in Space: 42 days")
+    end
   end
 end
