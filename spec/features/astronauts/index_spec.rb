@@ -48,13 +48,13 @@ RSpec.describe 'astronaut index page', type: :feature do
     within("section#astronaut-#{@astronaut_1.id}") do
       expect(page).to have_content("#{@mission_1.title}")
       expect(page).to have_content("#{@mission_2.title}")
-      # expect(page).not_to have_content("#{@mission_3.title}")
+      expect(page).not_to have_content("#{@mission_3.title}")
     end
 
-    within("section#astronaut-#{@astronaut_2.id}") do
+    within("section#astronaut-2") do
       expect(page).to have_content("#{@mission_1.title}")
       expect(page).to have_content("#{@mission_3.title}")
-      # expect(page).not_to have_content("#{@mission_2.title}")
+      expect(page).not_to have_content("#{@mission_2.title}")
     end
 
     within("section#astronaut-#{@astronaut_3.id}") do
@@ -62,5 +62,11 @@ RSpec.describe 'astronaut index page', type: :feature do
       expect(page).to have_content("#{@mission_2.title}")
       expect(page).to have_content("#{@mission_3.title}")
     end
+  end
+
+  it 'displays the total time in space for each astronaut' do 
+    visit '/astronauts'
+
+
   end
 end
