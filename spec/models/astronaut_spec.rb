@@ -13,7 +13,7 @@ describe Astronaut, type: :model do
   end
 
   describe 'instance methods' do 
-    it '#alpha_missions' do 
+    before :each do 
       @astronaut_1 = Astronaut.create(name: "Neil", age: 37, job: "Commander")
       @astronaut_2 = Astronaut.create(name: "Buzz", age: 55, job: "Pilot")
       @astronaut_3 = Astronaut.create(name: "Madonna", age: 44, job: "HBIC")
@@ -31,10 +31,20 @@ describe Astronaut, type: :model do
 
       @mission_2.astronauts << @astronaut_1
       @mission_2.astronauts << @astronaut_3
+    end
 
+    it '#alpha_missions' do 
+      
       expect(@astronaut_1.alpha_missions).to eq(["Apollo 13", "Capricorn 4"])
       expect(@astronaut_2.alpha_missions).to eq(["Apollo 13", "Gemini 7"])
       expect(@astronaut_3.alpha_missions).to eq(["Apollo 13", "Capricorn 4", "Gemini 7"])
+    end
+
+    it "#total_time" do 
+
+      expect(@astronaut_1.total_time).to eq(37)
+      expect(@astronaut_2.total_time).to eq(20)
+      expect(@astronaut_3.total_time).to eq(42)
     end
   end
 end
